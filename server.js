@@ -135,6 +135,10 @@ function view(){
                     console.table(employees);
                 }).then(endMenu);
                 break;
+
+            case "Main Menu" :
+                mainMenu();
+                break;
         }
     });
 
@@ -208,6 +212,10 @@ function add(selectedTable){
 
             case "Employees" :
                 addEmployee();
+                break;
+
+            case "Main Menu" :
+                mainMenu();
                 break;
         }
     });
@@ -366,9 +374,9 @@ function add(selectedTable){
 //     }); 
 // } //else
 }
-
+//last thing i changed
 async function addDept(isAddingRole, isAddingEmployee) {
-    console.log(isAddingEmployee);
+    // console.log(isAddingEmployee);
     if(isAddingRole && !isAddingEmployee){
         inquirer.prompt(questions.departmentQuestions).then(function(departmentName) {
             department.add(departmentName).then(addRole);
@@ -397,7 +405,7 @@ async function addDept(isAddingRole, isAddingEmployee) {
 }
 
 async function addRole(isAddingEmployee) {
-    console.log(isAddingEmployee);
+    // console.log(isAddingEmployee);
     // if(isAddingEmployee) {
     //     return await inquirer.prompt(questions.roleQuestions);
     // }
@@ -445,7 +453,7 @@ async function addRole(isAddingEmployee) {
                 for(var i = 0; i < departments.length; i++) {
                     if(departments[i].departmentName === roleInfo.selectedDept) {
                         roleInfo.selectedDept = departments[i].id;
-                        console.log(roleInfo.selectedDept);
+                        // console.log(roleInfo.selectedDept);
                         break;
                     }
                 }
@@ -497,7 +505,7 @@ function addEmployee() {
                         employee.add(employeeInfo).then(endMenu);
                     }
                 }
-                console.log(roles);
+                // console.log(roles);
                 // for(var i = 0; i < roles.length; i++) {
                 //     if(employeeInfo.)
                 // }
@@ -521,7 +529,7 @@ function update(){
                     inquirer.prompt(selectDepartment).then(function(selectedDepartment) {
                         var departmentBeingUpdated = departments.filter((department) => department.departmentName == selectedDepartment.selectedDept)[0];
                         inquirer.prompt(questions.updateDeptQuestions).then(function(updatedDept) {
-                            console.log(departmentBeingUpdated);
+                            // console.log(departmentBeingUpdated);
                             departmentBeingUpdated.departmentName = updatedDept.updatedDeptName;
                             department.update(departmentBeingUpdated).then(endMenu);
                         });
@@ -530,6 +538,8 @@ function update(){
                 break;
 
             case "Roles" :
+                console.log("Updating roles has not been added yet \nComing Soon...");
+                endMenu();
                 // role.getAll().then(function(roles) {
                 //     var selectRole = questions.selectRole[0];
                 //     selectRole.choices = roles.map((role) => role.title);
@@ -573,13 +583,17 @@ function update(){
                                 });
                                 emp[0].role_id = role[0].id;
                                 employee.update(emp[0]).then(function(response) {
-                                    console.log(response);
+                                    // console.log(response);
                                 });
                             });
                         });
 
                     });
                 });
+                break;
+
+            case "Main Menu" :
+                mainMenu();
                 break;
         }
     });
@@ -779,7 +793,7 @@ function getAllRoles(){
 
 function updateRole() {
     var table = getAllRoles();
-    console.log(table);
+    // console.log(table);
     inquirer.prompt(viewTable).then(function(answer) {
 
         // if(answer.viewTable) {
@@ -792,14 +806,14 @@ function updateRole() {
             .then(function(result) {
                 console.table(result);
             }).catch(function(err) {
-                console.log(err);
+                // console.log(err);
             });
             // viewRoles();
             // console.log("after viewRoles");
         }
     }).then(function(response) {
 
-        console.log("then");
+        // console.log("then");
         // inquirer.prompt(updateQuestions).then(function(ans) {
         //     var query = "UPDATE role ";
         //     query += "SET ?? ";
@@ -917,7 +931,7 @@ function test() {
                     break;
                 }
             }
-            console.log(departmentId);
+            // console.log(departmentId);
         });
     });
 
