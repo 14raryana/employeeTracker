@@ -9,6 +9,7 @@ module.exports = function() {
                     if (err) {
                         reject(err);
                     } else {
+                        console.log("Successfully added " + employee.firstName + " " + employee.lastName + " as an employee");
                         resolve(results);
                     }
                 })
@@ -28,8 +29,19 @@ module.exports = function() {
             })
         },
         
-        update: function(){
-        
+        update: function(employee){
+            const query = "UPDATE employees SET role_id = ? WHERE id = ?;";
+            return new Promise(function(resolve, reject) {
+                connection.query(query,[employee.role_id, employee.id], function(err, results) {
+                    if(err) {
+                        reject(err);
+                    }
+                    else {
+                        console.log("Successfully updated " + employee.first_name + " " + employee.last_name);
+                        resolve(results);
+                    }
+                });
+            });
         }
     }
 }

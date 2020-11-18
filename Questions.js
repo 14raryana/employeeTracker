@@ -1,3 +1,5 @@
+const departmentService = require("./Services/departmentService");
+
 const questions = {
     // department: {
     //     questions: [
@@ -40,15 +42,16 @@ const questions = {
                 message: "What is the employees' last name?"
             },
             {
-                type: "input",
+                type: "list",
                 name: "roleId",
-                message: "What is the employees role ID?"
+                message: "Please select a role to add this employee to",
+                choices: []
             },
-            {
-                type: "input",
-                name: "managerId",
-                message: "What is the employees' manager's Id?"
-            }
+            // {
+            //     type: "input",
+            //     name: "managerId",
+            //     message: "What is the employees' manager's Id?"
+            // }
         ],
     departmentQuestions: [
         {
@@ -68,10 +71,16 @@ const questions = {
             name: "salary",
             message: "What is the salary of this role?"
         },
+        // {
+        //     type: "input",
+        //     name: "departmentId",
+        //     message: "What is the department ID of this role?"
+        // },
         {
-            type: "input",
-            name: "departmentId",
-            message: "What is the department ID of this role?"
+            type: "list",
+            name: "selectedDept",
+            message: "Please Select a Department to add this role to",
+            choices: []
         }
     ],
     tableList: [
@@ -83,7 +92,7 @@ const questions = {
                 "Departments",
                 "Roles",
                 "Employees",
-                "Go Back (NOT A TABLE)"
+                "Main Menu"
             ]
         }
     ],
@@ -118,7 +127,72 @@ const questions = {
                 "Exit"
             ]
         }
+    ],
+    selectDepartment: [
+        {
+            type: "list",
+            name: "selectedDept",
+            message: "Please Select a Department",
+            choices: null
+        }
+    ],
+    selectRole: [
+        {
+            type: "list",
+            name: "selectedRole",
+            message: "Please Select a Role",
+            choices: []
+        }
+    ],
+    selectEmployee: [
+        {
+            type: "list",
+            name: "selectedEmployee",
+            message: "Please Select an Employee",
+            choices: []
+        }
+    ],
+    updateDeptQuestions: [
+        {
+            type: "input",
+            name: "updatedDeptName",
+            message: "Please enter new Department Name"
+        }
+    ],
+    updateRoleQuestions: [
+        {
+            type: "input",
+            name: "updatedRoleTitle",
+            message: "Please enter new Role name"
+        },
+        {
+            type: "input",
+            name: "updatedSalary",
+            message: "Please enter a new salary for this role"
+        },
+        // {
+        //     type: "input",
+        //     name: "departmentId",
+        //     message: "What is the department ID of this role?"
+        // },
+        {
+            type: "list",
+            name: "selectedDept",
+            message: "Please Select a Department to add this role to",
+            choices: []
+        }
+    ],
+    updateEmployeeRoleQuestions: [
+        {
+            type: "list",
+            name: "updateEmployeeRole",
+            message: "Which employees' role would you like to update?",
+            choices: []
+        }
     ]
+}
+function hello() {
+    // return ["poop","garb", "shit"];
 }
 
 module.exports = questions;
